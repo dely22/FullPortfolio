@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('./includes/portohead.ejs') %> 
+
+<body class="bg-light" style="color: rgb(102, 62, 96);">
+   <main class="container">
+    <!-- top nav start -->
+    <%- include('./includes/topNav.ejs') %> 
+    <!-- top nav end -->
+
+    <!-- side sec -->
+    <div class="row">
+    <!-- Dashboard sideNav Section -->
+    <%- include('./includes/sideNav.ejs') %> 
+
+    <!-- Services Sec  -->
+<section class="col-lg-8 col-md-8 col-12" id="skil">
+<div class="card shadow p-3">
+    <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+        <h3 class="fw-bold text-prof">Skills</h3>
+
+        <a role="button" data-bs-toggle="modal" data-bs-target="#addSkill">
+            <i class="fa fa-plus fw-bold fs-5 text-prof"></i>
+        </a>
+        </div>
+
+        <div class="card-body p-0">
+        <% let i =1; if(skills.length){ %>
+            <% for(let item =0; item< skills.length; item++){ %>
+                        
+        <div class="row">
+            <!--  skill  -->
+            <div class="col-12 mb-2">
+                <div class="shadow-sm p-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <h5><%= skills[item].skill_name %></h5>
+                        <div>
+                            <a class="mx-2" role="button" data-bs-toggle="modal" data-bs-target="#editSkill<%= skills[item]._id %>">
+                                <i class="fa fa-pencil-square-o"style="font-size: 17px; color: var(--trash-color);"></i>
+                            </a>
+                            <a role="button" data-bs-toggle="modal" data-bs-target="#delete<%= skills[item]._id %>">
+                                <i class="fa fa-trash-o" style="font-size: 17px; color: var(--trash-color);"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="progress">
+                    <div class="progress-bar"
+                        role="progressbar"
+                        style="width: <%=skills[item].progress_percent %>%"
+                        aria-valuenow="<%=skills[item].progress_percent %>"
+                        aria-valuemin="0"
+                        aria-valuemax="100">
+                        <%= skills[item].progress_percent %>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- edit skill   -->
+            <div class="modal fade" id="editSkill<%=skills[item]._id %>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content p-3">
+                        <div class="modal-header">
+                            <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">Add
+                                Skill</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row g-3 needs-validation" action="Edit_skills" method="post">
+                                <input type="hidden" name="id" value="<%=skills[item]._id%>">
+                                <div class="col-12">
+                                    <input type="text" class="form-control rounded-pill" id="skill"
+                                        name="skill_name" placeholder="Skill" value="<%=skills[item].skill_name%>">
+                                </div>
+                                <div class="col-12">
+                                    <input type="range" class="form-range" name="progress_percent" id="customRange1"
+                                        value="<%=skills[item].progress_percent%>">
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary d-block " type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Delete skill -->
+            <div class="modal fade" id="delete<%= skills[item]._id%>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-body fw-bold d-flex justify-content-lg-center align-items-center flex-column" >
+                        <i class="bi bi-exclamation-circle fs-1 text-danger"></i>
+                        <h3 class="fs-4">Do you want to delete?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">
+                            No
+                        </button>
+                        <a type="submit" class="btn btn-danger" href="/delete_skill/<%= skills[item]._id%>">Yes</a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%> 
+            <%  } else{ %>
+                <h5 class="p-3 px-4"> There is no Skill ! </h5>
+                <h5 class=" px-4"> Add Some Skills, I Know That U r a Skilled Person ^^ </h5>
+            <%}%> 
+    </div>
+
+</div>
+</section>
+ <!-- Modal Add Skill -->
+<div class="modal fade" id="addSkill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">Add Skill</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3 needs-validation" action="addskills" method="post">  
+                    <div class="col-12">
+                        <input type="text" class="form-control rounded-pill" id="skill" name="skill_name"
+                            placeholder="Skill">
+                    </div>
+                    <div class="col-12">
+                        <input type="range" class="form-range" name="progress_percent" id="customRange1">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary d-block " type="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $("#, #skil, #Edu, #expe, #, #wrk, #social").hide();
+        }); 
+       
+        // $(document).ready(function(){
+        // $("#perso, #skil, #Edu, #expe, #serv, #wrk, #social").hide();
+        // }); 
+        // // hom perso skil Edu expe serv wrk social
+
+        // $("#home").click(function(){
+        // $("#perso,#skil,#Edu,#expe,#serv,#wrk,#social").hide();
+        // $("#hom").show();
+        // });
+        // $("#personal").click(function(){
+        // $("#hom,#skil,#Edu,#expe,#serv,#wrk,#social").hide();
+        // $("#perso").show();
+        // });
+        // $("#skills").click(function(){
+        // $("#hom,#perso,#Edu,#expe,#serv,#wrk,#social").hide();
+        // $("#skil").show();
+        // });
+        // $("#Education").click(function(){
+        // $("#hom,#perso,#skil,#expe,#serv,#wrk,#social").hide();
+        // $("#Edu").show();
+        // });
+        // $("#experience").click(function(){
+        // $("#hom,#perso,#skil,#Edu,#serv,#wrk,#social").hide();
+        // $("#expe").show();
+        // });
+        
+        // $("#Service").click(function(){
+        // $("#hom,#perso,#skil,#Edu,#wrk,#expe,#social").hide();
+        // $("#serv").show();
+        // });
+        // $("#works").click(function(){
+        // $("#hom,#perso,#skil,#Edu,#serv,#expe,#social").hide();
+        // $("#wrk").show();
+        // });
+        // $("#Sociall").click(function(){
+        // $("#hom,#perso,#skil,#Edu,#serv,#expe,#wrk").hide();
+        // $("#social").show();
+        // });
+
+        // $("#Edit").click(function(){
+        // $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
+        // $("#Edpers").show();
+        // });
+
+        // $("#saveEd").click(function(){
+        // $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#Edpers").hide();
+        // $("#perso").show();
+        // });
+
+      
+
+    </script>
+
+
+</body>
+</html>
