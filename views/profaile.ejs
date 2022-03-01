@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('./includes/portohead.ejs') %> 
+
+<body class="bg-light" style="color: rgb(102, 62, 96);">
+   <main class="container">
+      <!-- top nav start -->
+      <%- include('./includes/topNav.ejs') %> 
+      <!-- top nav end -->
+
+      <!-- side sec -->
+      <div class="row">
+      <!-- Dashboard sideNav Section -->
+      <%- include('./includes/sideNav.ejs') %> 
+
+      <!-- About Section -->
+      <%- include('./includes/home.ejs') %> 
+
+      <!-- info Section -->
+      <%- include('./includes/personal.ejs') %> 
+
+      <!-- Skills Section -->
+      <%- include('./includes/skills.ejs') %> 
+            
+      <!-- Experience section -->
+      <%- include('./includes/expe.ejs') %> 
+      
+      <!-- Education section -->
+      <%- include('./includes/educ.ejs') %> 
+
+      <!-- Services section -->
+      <%- include('./includes/Services.ejs') %> 
+
+      <!-- Portfolio section -->
+      <%- include('./includes/works.ejs') %>
+
+        <!-- Social section -->
+      <%- include('./includes/Social.ejs') %> 
+
+
+    </div>
+
+  </main>
+
+    <!-- Edit user avatar image model -->
+    <div class="modal fade" id="avatar-edit-model" tabindex="-1"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+          <!-- model header -->
+          <div class="modal-headerd-flex justify-content-between align-items-center">
+            <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
+              Edit image profaile
+            </h4>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- model body -->
+          <div class="modal-body">
+            <form class="g-3">
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02" />
+              </div>
+            </form>
+          </div>
+
+          <!-- model footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn bg-primary text-white">
+              update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- edit Home  info -->
+    <div
+          class="modal fade"
+          id="edit-home"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
+            Edit Home Section
+          </h4>
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close" ></button>
+        </div>
+
+        <div class="modal-body">
+          <form class="row g-3"method="POST" action="/myabouts/update"  enctype="multipart/form-data">
+            
+        <input type="hidden" name="bookId" value="">
+            <div class="col-6"> 
+              <!--Hello name -->
+              <div class="input-group">
+                  <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Hello Name"
+                  aria-label="fName"
+                  aria-describedby="addon-wrapping"
+                  required
+                  name="hname" value="">
+                  />
+              </div>
+              </div>
+              
+
+              <!-- Job Title -->
+              <div class="col-6">
+              <div class="input-group">
+                  <input
+                  type="text"
+                  class="form-control l"
+                  placeholder="Job Name"
+                  aria-label="lName"
+                  aria-describedby="addon-wrapping"
+                  required
+                  name="job" value=""
+                  />
+              </div>
+              </div>
+
+              <!-- summary -->
+              <div class="col-12">
+              <div class="input-group">
+                  <input
+                  type="text"
+                  class="form-control"
+                  placeholder="summary"
+                  aria-label="email"
+                  aria-describedby="addon-wrapping"
+                  required
+                  name="Summery" value="">
+                  />
+              </div>
+              </div>
+
+              <!-- CV  -->
+              <div class="col-12">
+              <div class="input-group">
+                    <input
+                  type="file"
+                  class="form-control l"
+                  placeholder="choose Cv File"
+                  aria-label="cv"
+                  aria-describedby="addon-wrapping"
+                  required
+                  value=""
+                  />
+              </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class=" col-12 btn bg-primary text-white">Save</button>
+              </div>
+              
+          </form>
+        </div>
+
+        
+      </div>
+      </div>
+    </div>
+
+
+    <!-- edit user info -->
+    <div
+          class="modal fade"
+          id="edit-info"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
+            Edit User Info
+          </h4>
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          <form class="row g-3">
+            <div class="col-6"> 
+              <!-- first name -->
+              <div class="input-group">
+                  <input
+                  type="text"
+                  class="form-control"
+                  placeholder="First Name"
+                  aria-label="fName"
+                  aria-describedby="addon-wrapping"
+                  required
+                  value=""
+                  />
+              </div>
+              </div>
+
+              <!-- last name -->
+              <div class="col-6">
+              <div class="input-group">
+                  <input
+                  type="text"
+                  class="form-control l"
+                  placeholder="Last Name"
+                  aria-label="lName"
+                  aria-describedby="addon-wrapping"
+                  required
+                  value=""
+                  />
+              </div>
+              </div>
+
+              <!-- email -->
+              <div class="col-12">
+              <div class="input-group">
+                  <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  aria-label="email"
+                  aria-describedby="addon-wrapping"
+                  required
+                  value=""
+                  />
+              </div>
+              </div>
+
+              <!-- gender -->
+              <div class="col-6">
+              <div class="input-group">
+                  <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  required
+                  >
+                  <option selected disabled>Gender</option>
+                  <option  value="1">Female</option>
+                  <option value="2">Male</option>
+                  </select>
+              </div>
+              </div>
+
+              <!-- phone number -->
+              <div class="col-6">
+              <div class="input-group">
+                  <input
+                  type="text"
+                  class="form-contro"
+                  placeholder="Phone Number"
+                  aria-label="phone"
+                  aria-describedby="addon-wrapping"
+                  required
+                  value=""
+                  />
+              </div>
+              </div> 
+
+              <!-- Address  -->
+              <div class="col-6">
+              <div class="input-group">
+                    <input
+                  type="text"
+                  class="form-control l"
+                  placeholder="Address"
+                  aria-label="lName"
+                  aria-describedby="addon-wrapping"
+                  required
+                  value=""
+                  />
+              </div>
+              </div>
+
+              <!-- date -->
+              <div class="col-6">
+              <div class="input-group">
+                  <input
+                  type="date"
+                  class="form-control"
+                  value="2/22/2022"
+                  />
+              </div>
+              </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class=" col-12 btn bg-primary text-white">Save</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- add skill Modal  -->
+    <div
+      class="modal fade"
+      id="add-skill"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
+              Add Skill
+            </h4>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <form class="row g-3">
+              <input
+                type="text"
+                class="form-control rounded-pill"
+                id="skill"
+                placeholder="Skill"
+              />
+              <input type="range" class="form-range" id="customRange1" />
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn bg-primary text-white">add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- edit skill Modal  -->
+    <div
+      class="modal fade"
+      id="edit-skill"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
+              Edit Skill
+            </h4>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <form class="row g-3">
+              <input
+                type="text"
+                class="form-control rounded-pill"
+                id="skill"
+                placeholder="Skill"
+              />
+              <input type="range" class="form-range" id="customRange1" />
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn bg-primary text-white">
+              Edit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete skill modal -->
+    <div
+      class="modal fade"
+      id="delete"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div
+            class="modal-body fw-bold d-flex justify-content-lg-center align-items-center flex-column"
+          >
+            <i class="bi bi-exclamation-circle fs-1 text-danger"></i>
+            <h3 class="fs-4">Do you want to delete?</h3>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              No
+            </button>
+            <button type="button" class="btn btn-danger">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Experience -->
+    <div
+          class="modal fade"
+          id="add-exper"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
+            Edit Experience
+          </h4>
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          <form class="row g-3">
+            <div class="col-6"> 
+              <!--  name -->
+              <div class="input-group">
+                  <input
+                  type="text"
+                  class="form-control"
+                  placeholder="experience title"
+                  aria-label="fName"
+                  aria-describedby="addon-wrapping"
+                  required
+                  value=""
+                  />
+              </div>
+              </div>
+
+              <!-- experience background -->
+              <div class="col-6">
+              <div class="input-group">
+                  <input
+                  type="text"
+                  class="form-control l"
+                  placeholder="experience background"
+                  aria-label="lName"
+                  aria-describedby="addon-wrapping"
+                  required
+                  value=""
+                  />
+              </div>
+              </div>
+
+        
+              <!-- Type edu or cusrs  -->
+              <div class="col-6">
+              <div class="input-group">
+                    <input
+                  type="text"
+                  class="form-control l"
+                  placeholder="Traning or Education"
+                  aria-label="lName"
+                  aria-describedby="addon-wrapping"
+                  required
+                  value=""
+                  />
+              </div>
+              </div>
+
+              <!-- date -->
+              <div class="col-6">
+              <div class="input-group">
+                  <input
+                  type="date"
+                  class="form-control"
+                  value="2/22/2022"
+                  />
+              </div>
+              </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class=" col-12 btn bg-primary text-white">Add</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+     <script src="/js/bootstrap.bundle.min.js"></script>
+     <script src="/js/jquery.min.js"></script>
+     <script>
+       
+        $(document).ready(function(){
+        $("#perso, #skil, #Edu, #expe, #serv, #wrk, #social").hide();
+        }); 
+        // hom perso skil Edu expe serv wrk social
+
+        $("#home").click(function(){
+        $("#perso,#skil,#Edu,#expe,#serv,#wrk,#social").hide();
+        $("#hom").show();
+        });
+        $("#personal").click(function(){
+        $("#hom,#skil,#Edu,#expe,#serv,#wrk,#social").hide();
+        $("#perso").show();
+        });
+        $("#skills").click(function(){
+        $("#hom,#perso,#Edu,#expe,#serv,#wrk,#social").hide();
+        $("#skil").show();
+        });
+        $("#Education").click(function(){
+        $("#hom,#perso,#skil,#expe,#serv,#wrk,#social").hide();
+        $("#Edu").show();
+        });
+        $("#experience").click(function(){
+        $("#hom,#perso,#skil,#Edu,#serv,#wrk,#social").hide();
+        $("#expe").show();
+        });
+        
+        $("#Service").click(function(){
+        $("#hom,#perso,#skil,#Edu,#wrk,#expe,#social").hide();
+        $("#serv").show();
+        });
+        $("#works").click(function(){
+        $("#hom,#perso,#skil,#Edu,#serv,#expe,#social").hide();
+        $("#wrk").show();
+        });
+        $("#Sociall").click(function(){
+        $("#hom,#perso,#skil,#Edu,#serv,#expe,#wrk").hide();
+        $("#social").show();
+        });
+
+        $("#Edit").click(function(){
+        $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
+        $("#Edpers").show();
+        });
+
+        $("#saveEd").click(function(){
+        $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#Edpers").hide();
+        $("#perso").show();
+        });
+
+      
+
+    </script>
+
+
+</body>
+</html>

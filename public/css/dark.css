@@ -1,0 +1,155 @@
+
+.swicher {
+  position: fixed;
+  right: 30px;
+  top: 24px;
+  padding-left: 30rem;
+  z-index: 1000;
+}
+body.dark {
+  background-color: #0a0510;
+  line-height: 1.5;
+  font-size: 16px;
+  font-family: "Poppins" sans-serif;
+}
+body.dark p,
+body.dark .about .about-content .about-text p, body.dark
+.about .about-content .personal-info .info-item p,
+body.dark .about .about-content .personal-info .info-item p span {
+  color: #d5c1dd;
+}
+body.dark h3.hello {
+  color: #d5c1dd;
+}
+body.dark h3.my-profession {
+  color: #b19af0;
+}
+body.dark span.name {
+  color: #8a60ff;
+}
+body.dark .section-title h2 {
+  color: #8884c5;
+}
+body.dark .contact-title {
+  color: #c29bff;
+}
+body.dark .contact-sub-title {
+  color: #9f9dc9;
+}
+body.dark .about .about-content .skills .skill-item .progress .progress-in {
+  background: #8884c5;
+}
+body.dark {
+  color: #dad7fc;
+}
+body.dark .aside {
+  border-right: 1px solid #1e132a;
+  background: #0a0510;
+}
+body.dark footer {
+  background: #0a0510;
+}
+body.dark .aside .nav li a {
+  color: #dad7fc;
+}
+body.dark .aside .nav li a:hover {
+  color: #8884c5;
+}
+body.dark .aside .logo a,
+body.dark .about .about-content h3.title,
+body.dark .about .about-content .skills .skill-item .skill-percent,
+body.dark .about .about-content .skills .skill-item h5 {
+  color: #8884c5;
+}
+
+/* them section */
+body.dark .label {
+  display: flex;
+  background:  var(--header);
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  height: 26px;
+  width: 50px;
+  /*	transform: scale(1.5);*/
+  box-sizing: border-box;
+}
+body.dark .ball {
+  background:  var(--header);
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  box-sizing: border-box;
+  transition: transform 0.2s linear;
+}
+.checkbox {
+  opacity: 0;
+  position: absolute;
+  top: 20px;
+  height: 40px;
+  width: 45px;
+  z-index: 10000;
+  border-radius: 5px;
+  border: 1px solid  var(--header);
+}
+.label {
+  display: flex;
+  background:  var(--header);
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  height: 26px;
+  width: 50px;
+  box-sizing: border-box;
+  /*	transform: scale(1.5);*/
+}
+
+.fa-sun,
+.fa-moon {
+  color: var(--skin-color);
+  font-size: 19px;
+  font-weight: 600;
+}
+body.dark .fa-sun,
+body.dark .fa-moon {
+  color: #7652da;
+  font-size: 19px;
+  font-weight: 600;
+}
+body{
+  --bg:var(--bg-black-100);
+}
+body.dark {
+  --header:#ffffff;
+  --bg:#0a0510;
+}
+body{
+  --header:var(--bg-black-100);
+}
+body.dark .about .about-content .about-text h3 {
+  color: #b6b3e3;
+}
+body.dark .about .about-content .about-text h3 span {
+  color: #8884c5;
+}
+.ball {
+  background:  var(--header);
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  top: 2.5px;
+  left: 2px;
+  box-sizing: border-box;
+  transition: transform 0.2s linear;
+}
+.checkbox:checked + .label .ball {
+  transform: translateX(24px);
+}
