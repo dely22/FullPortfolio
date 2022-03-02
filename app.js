@@ -1,83 +1,46 @@
-// const express = require("express");
-// const path = require('path');
-// const app = express();
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const httpErrors = require('http-errors');
+const logger = require('morgan');
 
-// const initial_path = path.join(__dirname, "public");
+const bodyParser = require('body-parser');
 
-// app.use(express.static(initial_path));
-// app.set('views', 'views');
-// app.set('view engine', 'ejs');
+const indexRouter = require('./router/index');
 
-// app.use(express.static('public/css'));
-// app.use(express.static('public/js'));
-// app.use(express.static('public/img'));
-// // route
-// // skills start
-// const Skills = require('./models/dash-skills');
-// // Skills page
-// app.get('/dash-Skill', function(req, res, next) {
-//   Skills.find().then((result)=>{
-//     res.render('dash-skills', {skills:result});
-//   console.log(result);
-//   })
-// });
-//   //Add new skill to the view in the data tables section
-// app.post('/addskills', function(req, res, next) {
-//   var skillDetails = new Skills({
-//     skill_name: req.body.skill_name,
-//     progress_percent: req.body.progress_percent,
-   
-//   });
-   
-//   skillDetails.save();
-        
-// console.log("skill was add")
-// res.redirect('/dash-Skill');
-
-// });
-
-// // Edit Skills
-// app.post('/Edit_skills', function(req, res, next){
-  
-//   var item = {
-//     skill_name: req.body.skill_name,
-//     progress_percent: req.body.progress_percent,
-   
-//   };
-//   var id = req.body.id;
-//   Skills.updateMany({"_id": id}, {$set: item}, item, function(err, result){
-   
-//     console.log("item updated");
-//     console.log(item);
-//   })
-//   res.redirect('/dash-Skill');
-// });
-// //Delete skill item
-
-// app.get('/delete_skill/:id',function(req,res,next){
-//   Skills.deleteOne({"_id":req.params.id},function(err,result){
-//     console.log("item deleted");
-//   })
-//   res.redirect('/dash-Skill');
-
-// });
-
-// // skills End
+const app = express();
 
 
-// app.get("/", (req, res) => {
-//     res.render("profaile");
-// })
-// app.get("/login", (req, res) => {
-//     res.render("login");
-// })
-// // app.listen(process.env.PORT || 5000);
+// view engine setup
+app.set('view engine', 'ejs');
+app.use(express.static('public/css'));
+app.use(express.static('public/js'));
+app.use(express.static('public/img'));
+app.use(express.static('public/images'));
 
-// app.get('*', (req, res) => {
-//     res.statusCode = 404;
-//   	res.end(' Sorry, page not found');
-// })
+app.use(logger('dev'));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-// app.listen(process.env.PORT || 5000, () => {
-//     console.log('Server running at http://127.0.0.1:5000');
-// })
+app.use(express.static('views'));
+app.use(express.static('public'));
+
+app.use('/', indexRouter);
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  next(httpErrors(404));
+});
+
+// error handler
+app.use((err, req, res, next) => {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
