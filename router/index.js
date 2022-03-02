@@ -3,7 +3,7 @@ const assert = require("assert")
 const multer = require('multer');
 const path = require('path');
 const Service = require('../models/schema');
-
+const Skills = require('../models/skil');
 const router = Router();
 
 // Dashboard page
@@ -66,7 +66,7 @@ router.post('/Edit_service', function(req, res, next){
     console.log("item updated");
     console.log(item);
   })
-//   res.redirect('/services');
+  res.redirect('/services');
 });
 
 //Delete service
@@ -76,6 +76,64 @@ router.get('/delete_service/:id',function(req,res,next){
   })
   res.redirect('/services');
 });
+
+// Skills page
+router.get('/skills', function(req, res, next) {
+  Skills.find().then((result)=>{
+    console.log(result);
+    res.render('skills', { skills:result});
+  })
+  });
+//Add skill 
+router.post('/addskills', function(req, res, next) {
+  var skillDetails = new Skills({
+    skill_name: req.body.skill_name,
+    progress_percent: req.body.progress_percent,
+  });
+   
+  skillDetails.save();
+        
+console.log("skill was add")
+res.redirect('/skills');
+
+});
+
+// Edit Skills
+router.post('/Edit_skills', function(req, res, next){
+  
+  var item = {
+    skill_name: req.body.skill_name,
+    progress_percent: req.body.progress_percent,
+  };
+  var id = req.body.id;
+  Skills.updateMany({"_id": id}, {$set: item}, item, function(err, result){
+   
+    console.log("item updated");
+    console.log(item);
+  })
+  res.redirect('/skills');
+});
+
+//Delete skill item
+router.get('/delete_skill/:id',function(req,res,next){
+  Skills.deleteOne({"_id":req.params.id},function(err,result){
+    console.log("item deleted");
+  })
+  res.redirect('/skills');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

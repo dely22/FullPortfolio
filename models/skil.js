@@ -9,25 +9,22 @@ mongoose
     console.log('DB connected :)');
   });
 
-// Services schema
-const ServiceSchema = new mongoose.Schema({
+const SkillSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
   },
-  service_icon:{
-    type:String,
+  skill_name:{
+    type: String ,
     required:true,
   },
- 
-  service_name:{
-    type:String,
+  progress_percent:{
+    type: Number,
+    required: true 
   },
   is_active: {
     type: Boolean,
-     default: 1
-    },
+     default: 1 },
 });
-const Service = mongoose.model('Service', ServiceSchema);
-module.exports = Service;
-
+const Skill = mongoose.model('Skill', SkillSchema);
+module.exports = Skill;
