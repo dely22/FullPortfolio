@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('./includes/portohead.ejs') %> 
+
+<body class="bg-light" style="color: rgb(102, 62, 96);">
+   <main class="container">
+    <!-- top nav start -->
+    <%- include('./includes/topNav.ejs') %> 
+    <!-- top nav end -->
+
+    <!-- side sec -->
+    <div class="row">
+    <!-- Dashboard sideNav Section -->
+    <%- include('./includes/sideNav.ejs') %> 
+
+    <!-- Medias Sec  -->
+   <section class="col-lg-8 col-md-8 col-12" id="serv">
+        <div class="card shadow p-3">
+            <!-- head Sec Title -->
+            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <h3 class="fw-bold text-prof">Social Media</h3>
+                <a role="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addmedia">
+                    <i class="fa fa-plus fw-bold fs-5 text-prof"></i>
+                </a>
+            </div>
+
+            <!-- Sec Info -->
+            <div class="card-body p-0">
+                  <% let i =1; if(Media.length){ %>
+                    <% for(let item4 =0; item4< Media.length; item4++){ %>
+                        <!-- <%= i++ %>  -->
+            <div class="row">
+               
+                    <!--  Media  -->
+                    <div class="col-12 mb-2">
+                        <div class="shadow-sm p-3">
+                            <div class="d-flex justify-content-between mb-2">    
+                                <i class="<%= Media[item4].Media_icon %>"></i>
+                                 <h5> <%= Media[item4].Media_url %></h5>
+                            <div>
+                                <a class="mx-2" role="button" data-bs-toggle="modal" data-bs-target="#editmedia<%= Media[item4]._id %>">
+                                    <i class="fa fa-pencil-square-o"style="font-size: 17px; color: var(--trash-color);"></i>
+                                </a>
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#delete<%= Media[item4]._id %>">
+                                    <!--  -->
+                                    <i class="fa fa-trash-o"style="font-size: 17px; color: var(--trash-color);"></i>
+                                </a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Edit Media -->
+                    <div class="modal fade" id="editmedia<%=Media[item4]._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content p-3">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">Edit Social Media</h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            
+                                            <div class="modal-body">
+                                                    <form class="row g-3 needs-validation"  action="Edit_Media" method="post" >
+                                                        <input  type="hidden" name="id" value="<%=Media[item4]._id%>">
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control rounded-pill" id="" name="Media_icon" placeholder="Media_icon"  value="<%=Media[item4].Media_icon%>">
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control rounded-pill"  name="Media_url" placeholder="Media_url"  value="<%=Media[item4].Media_url%>">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-primary d-block " type="submit">Save</button>
+                                                        </div>
+                                                    </form>
+                                            </div>
+                                                    
+                                        </div>
+                                    </div>
+                    </div>
+                    <!-- Delete Media modal -->
+                    <div class="modal fade" id="delete<%= Media[item4]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-body fw-bold d-flex justify-content-lg-center align-items-center flex-column" >
+                            <i class="bi bi-exclamation-circle fs-1 text-danger"></i>
+                            <h3 class="fs-4">Do you want to delete?</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">
+                                No
+                            </button>
+                            <a type="submit" class="btn btn-danger" href="/delete_media/<%=Media[item4]._id%>">Yes</a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+              
+            </div>
+              <%}%> 
+                <%  } else{ %>
+                            <h5 class="p-3 px-4"> There is no SocialMedia ! </h5>
+                            <h5 class=" px-4"> Add Some SocialMedia, I Know That U r a Social Person ^^ </h5>
+                        <%}%> 
+            </div>
+        </div>
+    </section>
+    <!-- add Medias -->
+    <div class="modal fade" id="addmedia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">Add Media</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3 needs-validation"  action="/addmedia" method="post" >
+                    
+                        <div class="col-12">
+                            <input type="text" class="form-control rounded-2" id="" name="Media_icon" placeholder="Media icon">
+                        </div>
+                          <div class="col-12">
+                            <input type="text" class="form-control rounded-2"  name="Media_url" placeholder="Media_url">
+                            </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary d-block " type="submit">Add</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $("#, #skil, #Edu, #expe, #, #wrk, #social").hide();
+        }); 
+  
+    </script>
+
+
+</body>
+</html>
