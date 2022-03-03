@@ -4,6 +4,10 @@ const multer = require('multer');
 const path = require('path');
 const Service = require('../models/schema');
 const Skills = require('../models/skil');
+const Social = require('../models/socialschema');
+const Experience = require('../models/Experschema');
+const Education = require('../models/Educationshcema');
+
 const router = Router();
 
 // Dashboard page
@@ -122,14 +126,141 @@ router.get('/delete_skill/:id',function(req,res,next){
   res.redirect('/skills');
 });
 
+// Media page
+router.get('/media', function(req, res, next) {
+  Social.find().then((result)=>{
+    res.render('social', { Media:result});
+  console.log(result);
+  })
+  });
+// add Media
+router.post('/addmedia', function(req, res, next) {
+  try {
+      var MediaDetails = new Social({
+          Media_icon: req.body.Media_icon,
+          Media_url:req.body.Media_url
+        });
+        MediaDetails.save();
+        console.log("media was add")
+        res.redirect('/media');
+     }catch{
+        console.log("Error in add process")
+     }
+});
 
+// Edit Media
+router.post('/Edit_Media', function(req, res, next){
+  var item = {
+      Media_icon: req.body.Media_icon,
+      Media_url:req.body.Media_url
+    };
+  var id = req.body.id;
+  Social.updateMany({"_id": id}, {$set: item}, item, function(err, result){
+    console.log("item updated");
+    console.log(item);
+  })
+  res.redirect('/media');
+});
 
+//Delete Media
+router.get('/delete_media/:id',function(req,res,next){
+  Social.deleteOne({"_id":req.params.id},function(err,result){
+    console.log("item deleted");
+  })
+  res.redirect('/media');
+});
 
+// Experince page
+router.get('/Experience', function(req, res, next) {
+  Experience.find().then((result)=>{
+    res.render('Experience', { Experinc:result});
+  console.log(result);
+  })
+  });
+// add Media
+router.post('/addExperinc', function(req, res, next) {
+  try {
+    var ExperDetails = new Experience({
+          Experinc_period: req.body.Experinc_period,
+          Experinc_name:req.body.Experinc_name,
+          Experinc_describe: req.body.Experinc_describe
+        });
+        ExperDetails.save();
+        console.log("media was add")
+        res.redirect('/Experience');
+     }catch{
+        console.log("Error in add process")
+     }
+});
 
+// Edit Experience
+router.post('/Edit_Experinc', function(req, res, next){
+  var item = {
+      Experinc_period: req.body.Experinc_period,
+          Experinc_name:req.body.Experinc_name,
+          Experinc_describe: req.body.Experinc_describe
+    };
+  var id = req.body.id;
+  Experience.updateMany({"_id": id}, {$set: item}, item, function(err, result){
+    console.log("item updated");
+    console.log(item);
+  })
+  res.redirect('/Experience');
+});
 
+//Delete Experience
+router.get('/delete_Experinc/:id',function(req,res,next){
+  Experience.deleteOne({"_id":req.params.id},function(err,result){
+    console.log("item deleted");
+  })
+  res.redirect('/Experience');
+});
 
+// Education page
+router.get('/Education', function(req, res, next) {
+  Education.find().then((result)=>{
+    res.render('Education', { Education:result});
+  console.log(result);
+  })
+  });
+// add Education
+router.post('/addEducation', function(req, res, next) {
+  try {
+    var EducationDetails = new Education({
+        Education_period: req.body.Education_period,
+        Education_name:req.body.Education_name,
+        Education_describe: req.body.Education_describe
+        });
+        EducationDetails.save();
+        console.log("Education was add")
+        res.redirect('/Education');
+     }catch{
+        console.log("Error in add process")
+     }
+});
 
+// Edit Education
+router.post('/Edit_Education', function(req, res, next){
+  var item = {
+      Education_period: req.body.Education_period,
+      Education_name:req.body.Education_name,
+      Education_describe: req.body.Education_describe
+    };
+  var id = req.body.id;
+  Education.updateMany({"_id": id}, {$set: item}, item, function(err, result){
+    console.log("item updated");
+    console.log(item);
+  })
+  res.redirect('/Education');
+});
 
+//Delete Education
+router.get('/delete_Education/:id',function(req,res,next){
+  Education.deleteOne({"_id":req.params.id},function(err,result){
+    console.log("item deleted");
+  })
+  res.redirect('/Education');
+});
 
 
 
