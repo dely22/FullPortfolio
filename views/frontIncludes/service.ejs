@@ -6,66 +6,25 @@
           </div>
         </div>
         <div class="row">
+        <%if(Service.length){ %>
+        <% for(let item3 =0; item3< Service.length; item3++){ %>
+                     
           <!--   Service item Start  = -->
           <div class="service-item padd-15">
             <div class="service-item-inner">
               <div class="icon">
-                <i class="fa fa-mobile-alt"></i>
+                <i class=" <%= Service[item3].service_icon %>"></i>
               </div>
-              <h4>PWA</h4>
+              <h4><%= Service[item3].service_name %></h4>
             </div>
           </div>
           <!--   Service item End  = -->
-          <!--   Service item Start  = -->
-          <div class="service-item padd-15">
-            <div class="service-item-inner">
-              <div class="icon">
-                <i class="fa fa-laptop-code"></i>
-              </div>
-              <h4>Responsive Design</h4>
+            <%}%> 
+                <%  } else{ %>
+                 <h5 class="p-3 px-4"> There is no Service added yet ! </h5>
+                <%}%> 
             </div>
-          </div>
-          <!--   Service item End  = -->
-          <!--   Service item Start  = -->
-          <div class="service-item padd-15">
-            <div class="service-item-inner">
-              <div class="icon">
-                <i class="fa fa-palette"></i>
-              </div>
-              <h4>Front-end Design</h4>
-            </div>
-          </div>
-          <!--   Service item End  = -->
-          <!--   Service item Start  = -->
-          <div class="service-item padd-15">
-            <div class="service-item-inner">
-              <div class="icon">
-                <i class="fa fa-code"></i>
-              </div>
-              <h4>Web programming</h4>
-            </div>
-          </div>
-          <!--   Service item End  = -->
-          <!--   Service item Start  = -->
-          <div class="service-item padd-15">
-            <div class="service-item-inner">
-              <div class="icon">
-                <i class="fa fa-search"></i>
-              </div>
-              <h4>Seo Marketing</h4>
-            </div>
-          </div>
-          <!--   Service item End  = -->
-          <!--   Service item Start  = -->
-          <div class="service-item padd-15">
-            <div class="service-item-inner">
-              <div class="icon">
-                <i class="fa fa-bullhorn"></i>
-              </div>
-              <h4>Digital Marketing</h4>
-            </div>
-          </div>
-          <!--   Service item End  = -->
+         
         </div>
       </div>
     </section>

@@ -29,9 +29,9 @@
 
             <!-- Sec Info -->
             <div class="card-body p-0">
-                  <% let i =1; if(Education.length){ %>
-                    <% for(let item3 =0; item3< Education.length; item3++){ %>
-                        <!-- <%= i++ %>  -->
+                <%if(Education.length){ %>
+                <% for(let item3 =0; item3< Education.length; item3++){ %>
+                    
             <div class="row">
                
                     <!--  Education  -->
@@ -64,13 +64,13 @@
                                                     <form class="row g-3 needs-validation"  action="Edit_Education" method="post" >
                                                             <input  type="hidden" name="id" value="<%=Education[item3]._id%>">
                                                             <div class="col-12">
-                                                                <input type="text" class="form-control rounded-pill" id="" name="Education_period" placeholder="Education period 2002-2022 "  value="<%=Education[item3].Education_period%>">
+                                                                <input type="text" class="form-control rounded-2" id="" name="Education_period" placeholder="Education period 2002-2022 "  value="<%=Education[item3].Education_period%>">
                                                             </div>
                                                             <div class="col-12">
-                                                                <input type="text" class="form-control rounded-pill"  name="Education_name" placeholder="Education_name"  value="<%=Education[item3].Education_name%>">
+                                                                <input type="text" class="form-control rounded-2"  name="Education_name" placeholder="Education_name"  value="<%=Education[item3].Education_name%>">
                                                             </div>
                                                             <div class="col-12">
-                                                                <input type="text" class="form-control rounded-pill"  name="Education_describe" placeholder="Education describe"  value="<%=Education[item3].Education_describe%>">
+                                                                <input type="text" class="form-control rounded-2"  name="Education_describe" placeholder="Education describe"  value="<%=Education[item3].Education_describe%>">
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-primary d-block " type="submit">Save</button>

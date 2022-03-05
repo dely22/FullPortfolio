@@ -1,15 +1,7 @@
 // connect db
-const mongoose = require('mongoose');
-const DB = 'mongodb://127.0.0.1:27017/portoDash';
-mongoose
-  .connect(DB, {
-    autoIndex: true,
-  })
-  .then(() => {
-    console.log('DB connected :)');
-  });
+const db = require('./db');
 
-const SkillSchema = new mongoose.Schema({
+const SkillSchema = new db.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
@@ -26,5 +18,5 @@ const SkillSchema = new mongoose.Schema({
     type: Boolean,
      default: 1 },
 });
-const Skill = mongoose.model('Skill', SkillSchema);
+const Skill = db.model('Skill', SkillSchema);
 module.exports = Skill;

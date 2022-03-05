@@ -29,9 +29,9 @@
 
             <!-- Sec Info -->
             <div class="card-body p-0">
-                  <% let i =1; if(Media.length){ %>
-                    <% for(let item4 =0; item4< Media.length; item4++){ %>
-                        <!-- <%= i++ %>  -->
+            <% if(Media.length){ %>
+            <% for(let item4 =0; item4< Media.length; item4++){ %>
+                
             <div class="row">
                
                     <!--  Media  -->
@@ -65,10 +65,10 @@
                                                     <form class="row g-3 needs-validation"  action="Edit_Media" method="post" >
                                                         <input  type="hidden" name="id" value="<%=Media[item4]._id%>">
                                                         <div class="col-12">
-                                                            <input type="text" class="form-control rounded-pill" id="" name="Media_icon" placeholder="Media_icon"  value="<%=Media[item4].Media_icon%>">
+                                                            <input type="text" class="form-control rounded-2" id="" name="Media_icon" placeholder="Media_icon"  value="<%=Media[item4].Media_icon%>">
                                                         </div>
                                                         <div class="col-12">
-                                                            <input type="text" class="form-control rounded-pill"  name="Media_url" placeholder="Media_url"  value="<%=Media[item4].Media_url%>">
+                                                            <input type="text" class="form-control rounded-2"  name="Media_url" placeholder="Media_url"  value="<%=Media[item4].Media_url%>">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-primary d-block " type="submit">Save</button>

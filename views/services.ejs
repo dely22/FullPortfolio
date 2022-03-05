@@ -29,9 +29,9 @@
 
             <!-- Sec Info -->
             <div class="card-body p-0">
-                  <% let i =1; if(Service.length){ %>
+                  <%if(Service.length){ %>
                     <% for(let item3 =0; item3< Service.length; item3++){ %>
-                        <!-- <%= i++ %>  -->
+                       
             <div class="row">
                
                     <!--  Service  -->
@@ -64,10 +64,10 @@
                                                     <form class="row g-3 needs-validation"  action="Edit_service" method="post" >
                                                             <input  type="hidden" name="id" value="<%=Service[item3]._id%>">
                                                             <div class="col-12">
-                                                                <input type="text" class="form-control rounded-pill" id="" name="service_icon" placeholder="service_icon"  value="<%=Service[item3].service_icon%>">
+                                                                <input type="text" class="form-control rounded-2" id="" name="service_icon" placeholder="service_icon"  value="<%=Service[item3].service_icon%>">
                                                             </div>
                                                                 <div class="col-12">
-                                                                        <input type="text" class="form-control rounded-pill"  name="service_name" placeholder="service_name"  value="<%=Service[item3].service_name%>">
+                                                                        <input type="text" class="form-control rounded-2"  name="service_name" placeholder="service_name"  value="<%=Service[item3].service_name%>">
                                                                     </div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-primary d-block " type="submit">Save</button>

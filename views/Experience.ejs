@@ -29,9 +29,9 @@
 
             <!-- Sec Info -->
             <div class="card-body p-0">
-                  <% let i =1; if(Experinc.length){ %>
-                    <% for(let item3 =0; item3< Experinc.length; item3++){ %>
-                        <!-- <%= i++ %>  -->
+            <%if(Experinc.length){ %>
+            <% for(let item3 =0; item3< Experinc.length; item3++){ %>
+                       
             <div class="row">
                
                     <!--  Experinc  -->
@@ -65,13 +65,13 @@
                                                     <form class="row g-3 needs-validation"  action="Edit_Experinc" method="post" >
                                                             <input  type="hidden" name="id" value="<%=Experinc[item3]._id%>">
                                                             <div class="col-12">
-                                                                <input type="text" class="form-control rounded-pill" id="" name="Experinc_period" placeholder="Experinc period 2002-2022 "  value="<%=Experinc[item3].Experinc_period%>">
+                                                                <input type="text" class="form-control rounded-2" id="" name="Experinc_period" placeholder="Experinc period 2002-2022 "  value="<%=Experinc[item3].Experinc_period%>">
                                                             </div>
                                                             <div class="col-12">
-                                                                <input type="text" class="form-control rounded-pill"  name="Experinc_name" placeholder="Experinc_name"  value="<%=Experinc[item3].Experinc_name%>">
+                                                                <input type="text" class="form-control rounded-2"  name="Experinc_name" placeholder="Experinc_name"  value="<%=Experinc[item3].Experinc_name%>">
                                                             </div>
                                                             <div class="col-12">
-                                                                <input type="text" class="form-control rounded-pill"  name="Experinc_describe" placeholder="Experinc describe"  value="<%=Experinc[item3].Experinc_describe%>">
+                                                                <input type="text" class="form-control rounded-2"  name="Experinc_describe" placeholder="Experinc describe"  value="<%=Experinc[item3].Experinc_describe%>">
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-primary d-block " type="submit">Save</button>

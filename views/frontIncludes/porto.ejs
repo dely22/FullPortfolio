@@ -1,22 +1,30 @@
   <section class="portfolio" id="portfolio">
       <div class="row">
         <div class="section-title padd-15">
-          <h2>portfolio</h2>
+          <h2>Last Projects</h2>
         </div>
       </div>
 
       <div class="box-container">
+      <%if(Projects.length){ %>
+      <% for(let itemp =0; itemp< Projects.length; itemp++){ %>
+             
         <div class="box">
-          <img src="port-hom.jpg" alt="" />
-          <h3>coming soon</h3>
+          <img src="<%= Projects[itemp].img %>" alt="" />
+          <h3><%= Projects[itemp].desc %></h3>
           <div class="icons">
-            <a href="#" class="fas fa-link"></a>
-            <a href="#" class="fas fa-share"></a>
-            <a href="#" class="fas fa-search"></a>
+            <a href="<%= Projects[itemp].url %>" class="fas fa-link"></a>
+            <!-- <a href="#" class="fas fa-share"></a>
+            <a href="#" class="fas fa-search"></a> -->
           </div>
         </div>
+      <%}%> 
+        <%  } else{ %>
+            <h5 class="p-3 px-4"> There is no Projects Yet! </h5>
+        <%}%> 
 
-        <div class="box">
+
+        <!-- <div class="box">
           <img src="port-hom.jpg" alt="" />
           <h3>coming soon</h3>
           <div class="icons">
@@ -79,6 +87,7 @@
              
             </div>
           </div>
-        </div>
+        </div> -->
+
       </div>
     </section>

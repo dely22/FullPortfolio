@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('./includes/portohead.ejs') %> 
+
+<body class="bg-light" style="color: rgb(102, 62, 96);">
+   <main class="container">
+    <!-- top nav start -->
+    <%- include('./includes/topNav.ejs') %> 
+    <!-- top nav end -->
+
+    <!-- side sec -->
+    <div class="row">
+    <!-- Dashboard sideNav Section -->
+    <%- include('./includes/sideNav.ejs') %> 
+
+    <!-- Projectss Sec  -->
+   <section class="col-lg-8 col-md-8 col-12" id="serv">
+        <div class="card shadow p-3">
+            <!-- head Sec Title -->
+            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <h3 class="fw-bold text-prof">Projects</h3>
+                <a role="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addProjects">
+                    <i class="fa fa-plus fw-bold fs-5 text-prof"></i>
+                </a>
+            </div>
+
+            <!-- Sec Info -->
+            <div class="card-body p-0">
+            <%if(Projects.length){ %>
+            <% for(let itemp =0; itemp< Projects.length; itemp++){ %>
+                       
+            <div class="row">
+                <!--  Projects  -->
+                <div class="col-12 mb-2">
+                    <div class="shadow-sm p-3">
+                        <div class="d-flex justify-content-between mb-2">    
+                            <img class="rounded-circle w-25 h-25" src="<%= Projects[itemp].img %>">
+                            <h5> <%= Projects[itemp].url %></h5>
+                            <p> <%= Projects[itemp].desc %></p>
+                        <div>
+                            <a class="mx-2" role="button" data-bs-toggle="modal" data-bs-target="#editProjects<%= Projects[itemp]._id %>">
+                                <i class="fa fa-pencil-square-o"style="font-size: 17px; color: var(--trash-color);"></i>
+                            </a>
+                            <a role="button" data-bs-toggle="modal" data-bs-target="#delete<%= Projects[itemp]._id %>">
+                               <i class="fa fa-trash-o"style="font-size: 17px; color: var(--trash-color);"></i>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Edit Projects -->
+                <div class="modal fade" id="editProjects<%=Projects[itemp]._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content p-3">
+                            <div class="modal-header">
+                                <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">Edit Project Info</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="row g-3 needs-validation"  action="Edit_Projects" method="post" >
+                                    <input  type="hidden" name="id" value="<%=Projects[itemp]._id%>">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control rounded-2" id="" name="img" value="<%=Projects[itemp].img%>">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control rounded-2"  name="url" value="<%=Projects[itemp].url%>">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control rounded-2"  name="desc" value="<%=Projects[itemp].desc%>">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary d-block " type="submit">Save</button>
+                                    </div>
+                                </form>
+                            </div>     
+                        </div>
+                    </div>
+                </div>
+                <!-- Delete Projects modal -->
+                <div class="modal fade" id="delete<%= Projects[itemp]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-body fw-bold d-flex justify-content-lg-center align-items-center flex-column" >
+                        <i class="bi bi-exclamation-circle fs-1 text-danger"></i>
+                        <h3 class="fs-4">Do you want to delete?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">
+                            No
+                        </button>
+                        <a type="submit" class="btn btn-danger" href="/delete_Projects/<%=Projects[itemp]._id%>">Yes</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+              
+            </div>
+            <%}%> 
+            <%  } else{ %>
+                <h5 class="p-3 px-4"> There is no Projects Yet! </h5>
+                <h5 class=" px-4"> Add Some Projects, I Know That U Make many Projects before -__ </h5>
+            <%}%> 
+            </div>
+        </div>
+    </section>
+    <!-- add Projectss -->
+    <div class="modal fade" id="addProjects" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">Add Projectss</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3 needs-validation"  action="/addProjects" method="post" >
+                    
+                        <div class="col-12">
+                            <input type="text" class="form-control rounded-2"  placeholder="img" name="img">
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control rounded-2"  placeholder="url" name="url">
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control rounded-2"  placeholder="desc" name="desc">
+                        </div>
+                            
+                        <div class="modal-footer">
+                            <button class="btn btn-primary d-block " type="submit">Add</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+ 
+</body>
+</html>

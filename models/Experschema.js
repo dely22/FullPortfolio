@@ -1,16 +1,9 @@
 // connect db
-const mongoose = require('mongoose');
-const DB = 'mongodb://127.0.0.1:27017/portoDash';
-mongoose
-  .connect(DB, {
-    autoIndex: true,
-  })
-  .then(() => {
-    console.log('DB connected :)');
-  });
+const db = require('./db');
+
 
 // Experince schema
-const ExperinceSchema = new mongoose.Schema({
+const ExperinceSchema = new db.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
@@ -32,6 +25,6 @@ const ExperinceSchema = new mongoose.Schema({
      default: 1
     },
 });
-const Experince = mongoose.model('Experince', ExperinceSchema);
+const Experince = db.model('Experince', ExperinceSchema);
 module.exports = Experince;
 

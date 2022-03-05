@@ -7,8 +7,7 @@ const bodyParser = require('body-parser');
 
 const indexRouter = require('./router/index');
 
-const app = express();
-
+const app = express()
 
 // view engine setup
 app.set('view engine', 'ejs');
@@ -16,6 +15,7 @@ app.use(express.static('public/css'));
 app.use(express.static('public/js'));
 app.use(express.static('public/img'));
 app.use(express.static('public/images'));
+app.use(express.static('public/uploads'));
 
 app.use(logger('dev'));
 app.use(express.json());

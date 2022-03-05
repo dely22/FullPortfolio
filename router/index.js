@@ -7,15 +7,34 @@ const Skills = require('../models/skil');
 const Social = require('../models/socialschema');
 const Experience = require('../models/Experschema');
 const Education = require('../models/Educationshcema');
+const User = require('../models/user');
+const About = require('../models/about');
+const Proj = require('../models/proj');
 
 const router = Router();
 
-// Dashboard page
-router.get('/', function(req, res, next) {
-  res.render('profaile', {
-    title: ' User porfilo ',
-  });
+//  GET  Data ToPORTFOLIO page. 
+router.get('/portofront', async (req, res) => {
+  const Abouts = await About.find();
+  const Users= await User.find();
+  const Skils= await Skills.find();
+  const educa = await Education.find();
+  const Experien = await Experience.find();
+  const service = await Service.find();
+  const social = await Social.find();
+  const Projy = await Proj.find();
+  //  result : variable
+  res.render('portofront', { About: Abouts, User:Users, skills:Skils, Education:educa,Experinc:Experien, Service:service,Projects:Projy, Media:social  })
 });
+
+
+
+// Dashboard page
+// router.get('/', function(req, res, next) {
+//   res.render('profaile', {
+//     title: ' User porfilo ',
+//   });
+// });
 router.get('/profaile', function(req, res, next) {
   res.render('profaile', {
     title: ' User porfilo ',
@@ -80,6 +99,61 @@ router.get('/delete_service/:id',function(req,res,next){
   })
   res.redirect('/services');
 });
+
+
+
+// Projects page
+router.get('/projects', function(req, res, next) {
+  Proj.find().then((result)=>{
+    res.render('Projects', { Projects:result});
+  console.log(result);
+  })
+  });
+
+
+// add Projects
+router.post('/addProjects', function(req, res, next) {
+     try{
+      var projectseDetails = new Proj({
+            img: req.body.img,
+            url:req.body.url,
+            desc:req.body.desc,
+        });
+        projectseDetails.save();
+        console.log("Projects was add")
+        res.redirect('/projects');
+     }catch{
+        console.log("Error in add process")
+     }
+});
+
+// Edit Projects
+router.post('/Edit_Projects', function(req, res, next){
+  var item = {
+        img: req.body.img,
+        url:req.body.url,
+        desc:req.body.desc,
+    };
+  var id = req.body.id;
+  Proj.updateMany({"_id": id}, {$set: item}, item, function(err, result){
+    console.log("item updated");
+    console.log(item);
+  })
+  res.redirect('/projects');
+});
+
+//Delete Projects
+router.get('/delete_Projects/:id',function(req,res,next){
+  Proj.deleteOne({"_id":req.params.id},function(err,result){
+    console.log("item deleted");
+  })
+  res.redirect('/projects');
+});
+
+
+
+
+
 
 // Skills page
 router.get('/skills', function(req, res, next) {
@@ -262,11 +336,65 @@ router.get('/delete_Education/:id',function(req,res,next){
   res.redirect('/Education');
 });
 
+// user page
+router.get('/user', function(req, res, next) {
+  User.find().then((result)=>{
+  res.render('User', { User:result});
+  console.log(result);
+  })
+});
+
+// Edit info
+router.post('/Edit_User', function(req, res, next){
+  var item = {
+      fullname: req.body.fullname,
+      Summary: req.body.Summary,
+      Address: req.body.Address,
+      birth: req.body.birth,
+      Degree: req.body.Degree,
+      freelance: req.body.freelance,
+      phone: req.body.phone,
+      email: req.body.email
+    };
+  var id = req.body.id;
+  User.updateMany({"_id": id}, {$set: item}, item, function(err, result){
+    console.log("item updated");
+    console.log(item);
+  })
+  res.redirect('/user');
+});
 
 
+// About page
+router.get('/home', function(req, res, next) {
+  About.find().then((result)=>{
+  res.render('profaile', { About:result});
+  console.log(result);
+  })
+});
+router.get('/', function(req, res, next) {
+  About.find().then((result)=>{
+  res.render('profaile', { About:result});
+  console.log(result);
+  })
+});
 
-
-
+// Edit info
+router.post('/Edit_About', function(req, res, next){
+  var item = {
+      hello_name: req.body.hello_name,
+      job: req.body.job,
+      bio: req.body.bio,
+      img: req.body.img,
+      cv: req.body.cv
+    };
+  var id = req.body.id;
+  About.updateMany({"_id": id}, {$set: item}, item, function(err, result){
+    console.log("item updated");
+    console.log(item);
+  })
+  res.redirect('/');
+});
 
 
 

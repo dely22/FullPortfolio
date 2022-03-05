@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('./includes/portohead.ejs') %> 
+
+<body class="bg-light" style="color: rgb(102, 62, 96);">
+   <main class="container">
+    <!-- top nav start -->
+    <%- include('./includes/topNav.ejs') %> 
+    <!-- top nav end -->
+
+    <!-- side sec -->
+    <div class="row">
+    <!-- Dashboard sideNav Section -->
+    <%- include('./includes/sideNav.ejs') %> 
+
+    <!-- Users Sec  -->
+   <section class="col-lg-8 col-md-8 col-12" id="">
+        <div class="card shadow p-3">
+            <!-- head Sec Title -->
+            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <h3 class="fw-bold text-prof">User Info</h3>
+            </div>
+
+            <!-- Sec User -->
+            <div class="card-body p-0">
+                <% if(User.length){ %>
+                <% for(let itemu =0; itemu< User.length; itemu++){ %>
+                      
+            <div class="col-lg-12">
+               
+                    <!--  User  -->
+                    <div class="col-12 mb-2">
+                        <div class="shadow-sm p-3">
+                          <div class="d-inline-block w-100 justify-content-between my-2 text-md-center">      
+                                  <!-- Name  -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Full Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                    <%= User[itemu].fullname %>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- Summary  -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Summary </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <%= User[itemu].Summary %>
+                                    </div>
+                                </div>
+                                <hr>
+                        
+                                <!-- Address  -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Address</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                    <%= User[itemu].Address %>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- Birth Day  -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Birthday</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                    <%= User[itemu].birth %>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- Degree  -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Degree</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                    <%= User[itemu].Degree %>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- Freelnace  -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Freelnace</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <%= User[itemu].freelance %>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- Phone  -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">phone</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <%= User[itemu].phone %>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- email  -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <%= User[itemu].email %>
+                                    </div>
+                                </div>
+                                <hr>
+                            <div>
+                                <a class="mx-2" role="button" data-bs-toggle="modal" data-bs-target="#EditUser<%= User[itemu]._id %>">
+                                    <i class="fa fa-pencil-square-o"style="font-size: 17px; color: var(--trash-color);"></i>
+                                </a>
+                              
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+             </div>
+              <!-- Edit User -->
+            <div class="modal fade" id="EditUser<%=User[itemu]._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content p-3">
+                        <div class="modal-header">
+                            <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">Edit Experience</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row g-3 needs-validation"  action="Edit_User" method="post" >
+                                    <input  type="hidden" name="id" value="<%=User[itemu]._id%>">
+                                    <!-- Name -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control l" aria-label="Name"aria-describedby="addon-wrapping"
+                                        name="fullname" value=" <%= User[itemu].fullname %>" required>
+                                    </div>
+                                    </div>
+                                    <!-- summary-->
+                                    <div class="col-6"> 
+                                        <div class="input-group">
+                                            <input type="text"  class="form-control" name="Summary" aria-label="Summary" aria-describedby="addon-wrapping"
+                                            required value="<%= User[itemu].Summary %>" />
+                                        </div>
+                                    </div>
+
+                                    <!-- Address  -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control l"name="Address"aria-label="lName" aria-describedby="addon-wrapping"
+                                        required name="Address" value="<%= User[itemu].Address %>"/>
+                                    </div>
+                                    </div>
+
+                                    <!-- birthday -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="birth" value="<%= User[itemu].birth %>"/>
+                                    </div>
+                                    </div>
+
+                                    <!-- Degree -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="Degree" value="<%= User[itemu].Degree %>"/>
+                                    </div>
+                                    </div>
+                                    <!-- Freelance -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="freelance" value="<%= User[itemu].freelance %>"/>
+                                    </div>
+                                    </div>
+                                    <!-- phone number -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text"  class="form-contro"  name="phone" aria-label="phone"
+                                        aria-describedby="addon-wrapping" required  value="<%= User[itemu].phone %>" />
+                                    </div>
+                                    </div> 
+                                    <!-- email -->
+                                    <div class="col-12">
+                                    <div class="input-group">
+                                        <input  type="email"  class="form-control" name="email"
+                                        aria-label="email" aria-describedby="addon-wrapping"  required value="<%= User[itemu].email %>" />
+                                    </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary d-block " type="submit">Save</button>
+                                    </div>
+                            </form>
+                        </div>
+                                
+                    </div>
+                </div>
+            </div>
+              
+              <%}%> 
+                <%  } else{ %>
+                            <h5 class="p-3 px-4"> There is no User ! </h5>
+                            <h5 class=" px-4"> Add Some Infos, I Know That U r an Expert Person ^^ </h5>
+                        <%}%> 
+            </div>
+        </div>
+    </section>
+  
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script>
+       
+       
+    
+    </script>
+
+
+</body>
+</html>

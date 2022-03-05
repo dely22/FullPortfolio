@@ -1,20 +1,23 @@
  <section class="home active" id="home">
+    <% if(About.length){ %>
+      <% for(let itema =0; itema< About.length; itema++){ %>
+                       
       <div class="home-info">
         <h3 class="hello">
-          Hello, my name is <span class="name">Hadeel Jameel</span>
+          Hello, my name is <span class="name"> <%= About[itema].hello_name %></span>
         </h3>
-        <h3 class="my-profession">I' m a <span>web designer</span></h3>
+        <h3 class="my-profession">I' m a <span><%= About[itema].job %></span></h3>
         <p>
-          Hello guys, I'm an IT graduate, and a web designer. I ware pleased
-          that you visited me here, I hope you like my portfolio, I will work to
-          make it more beautiful, so remember to visit it again, please send me
-          any suggestions in my email, you will find it in the access section at
-          the bottom of the page. Thank you.
+          <%= About[itema].bio %>
         </p>
 
-        <a href="#" class="btn">Download CV</a>
+        <a  download="" href="<%= About[itema].cv %>" class="btn">Download CV</a>
       </div>
       <div class="home-img">
-        <img src="port.jpg" alt="home pic" />
+        <img src="<%= About[itema].img %>" alt="home pic" />
       </div>
+    <%}
+    } else{ %>
+          There are no skill
+        <%}%>
     </section>
