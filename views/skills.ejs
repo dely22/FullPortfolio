@@ -26,7 +26,7 @@
         </div>
 
         <div class="card-body p-0">
-        <% let i =1; if(skills.length){ %>
+        <% if(skills.length){ %>
             <% for(let item =0; item< skills.length; item++){ %>
                         
         <div class="row">
@@ -71,7 +71,7 @@
                             <form class="row g-3 needs-validation" action="Edit_skills" method="post">
                                 <input type="hidden" name="id" value="<%=skills[item]._id%>">
                                 <div class="col-12">
-                                    <input type="text" class="form-control rounded-pill" id="skill"
+                                    <input type="text" class="form-control rounded-2" id="skill"
                                         name="skill_name" placeholder="Skill" value="<%=skills[item].skill_name%>">
                                 </div>
                                 <div class="col-12">
@@ -125,7 +125,7 @@
             <div class="modal-body">
                 <form class="row g-3 needs-validation" action="addskills" method="post">  
                     <div class="col-12">
-                        <input type="text" class="form-control rounded-pill" id="skill" name="skill_name"
+                        <input type="text" class="form-control rounded-2" id="skill" name="skill_name"
                             placeholder="Skill">
                     </div>
                     <div class="col-12">

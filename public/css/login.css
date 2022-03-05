@@ -7,9 +7,9 @@
     font-family: Raleway, sans-serif;
 }
 
-/* body {
-    background: linear-gradient(90deg, #C7C5F4, #776BCC);
-} */
+body {
+    background: #f1f1f7;
+}
 
 :root {
     --bg-black-900: #f2f2fc;

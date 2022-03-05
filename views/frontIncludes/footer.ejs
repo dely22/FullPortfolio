@@ -1,10 +1,17 @@
      <footer>
       <div class="share">
-        <a href="tel:+967738547437" class="fa fa-phone" target="_blank"></a>
-        <a href="mailto:almktaryh@gmail.com" target="_blank" class="fa fa-envelope"></a>
+         <% if(Media.length){ %>
+            <% for(let item4 =0; item4< Media.length; item4++){ %>
+                
+        <a href="<%= Media[item4].Media_url %>" class="<%= Media[item4].Media_icon %>" target="_blank"></a>
+        <%}%> 
+        <%  } else{ %>
+            <h5 class="p-3 px-4"> There is no SocialMedia added Yet ! </h5>
+        <%}%> 
+        <!-- <a href="mailto:almktaryh@gmail.com" target="_blank" class="fa fa-envelope"></a>
         <a href="https://www.facebook.com/hadeel.almktary.5" target="_blank" class="fab fa-facebook-f"></a>
         <a href="https://github.com/dely22" target="_blank" class="fab fa-github"></a>
-        <a href="https://www.linkedin.com/in/hadeel-jameel-23ab051ba" target="_blank" class="fab fa-linkedin"></a>
+        <a href="https://www.linkedin.com/in/hadeel-jameel-23ab051ba" target="_blank" class="fab fa-linkedin"></a> -->
       </div>
       <div class="credit">
         created by <span>Eng. Hadeel Jameel</span> | all rights reserved!

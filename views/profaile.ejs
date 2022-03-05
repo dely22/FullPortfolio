@@ -5,6 +5,7 @@
 
 <body class="bg-light" style="color: rgb(102, 62, 96);">
    <main class="container">
+
     <!-- top nav start -->
     <%- include('./includes/topNav.ejs') %> 
     <!-- top nav end -->
@@ -13,445 +14,159 @@
     <div class="row">
     <!-- Dashboard sideNav Section -->
     <%- include('./includes/sideNav.ejs') %> 
-
-<!-- about / home sec -->
-<section class="col-lg-8 col-md-8 col-12" id="hom">
-<div class="card shadow p-3">
-    <!-- Head Sec Title  -->
-    <div class="card-header bg-transparent d-flex justify-content-between align-itemas-center">
-        <h3 class="fw-bold text-prof">About</h3>
-        <a role="button" data-bs-toggle="modal"data-bs-target="#edit-home"
-                class=" border border-primary rounded d-flex justify-content-center align-itemas-lg-center rounded-circle p-2">
-            <i class="fa fa-pencil-square-o"></i>    
-        </a>
-    </a>
-    </div>
     
-    <!-- Personal Info Rows  -->
-    <div class="card-body">
-                      <!-- Hello World  -->
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Hello, My Name Is</h6>
+    <!-- about / home sec -->
+    <section class="col-lg-8 col-md-8 col-12" id="">
+        <div class="card shadow p-3">
+            <!-- head Sec Title -->
+            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <h3 class="fw-bold text-prof">About Info</h3>
             </div>
-            <div class="col-sm-9 text-secondary">
-                Hadeel Jameel             
-              
-            </div>
-        </div>
-        <hr>
 
-        <!-- Job  -->
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">I'm a </h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                Full Stack Web Developer
-             
-            </div>
-        </div>
-        <hr>
-        <!-- Summary  -->
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">I'm a </h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-               Summery Lorem ipsum dolor sit amet, consectetur adipisicing
-                 elit. Modi, impedit magni? Exercitationem hic nihil 
-                 esse, illo dolorum voluptates neque qui.
-                
-            </div>
-        </div>
-        <hr>
-        
-        <!-- Img  -->
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Avatar</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                image.png
-                
-            </div>
-        </div>
-        <hr>
-
-        <!-- CV  -->
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">CV</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                hadeelCV.pdf
-                 <!--  -->
-            </div>
-        </div>
-        <hr>
-        <!--  -->
-         <!-- edit Home  info -->
-    <div class="modal fade" id="edit-home"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content p-3">
-          <div class="modal-header">
-            <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
-              Edit About Section
-            </h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-              aria-label="Close" ></button>
-          </div>
-          <div class="modal-body">
-            <form class="row g-3"method="POST" action="about_edit"  enctype="multipart/form-data">        
-                <input type="hidden" name="id"  value="">
-                <div class="col-6"> 
-                  <!--Hello name -->
-                    <div class="input-group">
-                      <input type="text" class="form-control"  placeholder="Hello Name" aria-label="fName" aria-describedby="addon-wrapping"
-                        name="hello_name" value="" required>
+            <!-- Sec About -->
+            <div class="card-body p-0">
+            <%if(About.length){ %>
+            <% for(let itema =0; itema< About.length; itema++){ %>
+            <div class="col-lg-12">
+                <!--  About  -->
+                <div class="col-12 mb-2">
+                    <div class="shadow-sm p-3">
+                        <div class="d-inline-block w-100 justify-content-between my-2 text-md-center">      
+                                <!-- Name  -->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Hello Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <%= About[itema].hello_name %>
+                                </div>
+                            </div>
+                            <hr>
+                            
+                            <!-- job  -->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">job</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                <%= About[itema].job %>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- bio  -->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">bio </h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <%= About[itema].bio %>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- img  -->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">img </h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <%= About[itema].img %>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- cv  -->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">cv </h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <%= About[itema].cv %>
+                                </div>
+                            </div>
+                            <hr>
+                            
+                    
+                        <div>
+                            <a class="mx-2" role="button" data-bs-toggle="modal" data-bs-target="#EditAbout<%= About[itema]._id %>">
+                                <i class="fa fa-pencil-square-o"style="font-size: 17px; color: var(--trash-color);"></i>
+                            </a>
+                            
+                        </div>
+                        </div>
                     </div>
-                  </div>               
+                </div>   
+             </div>
+              <!-- Edit About -->
+            <div class="modal fade" id="EditAbout<%=About[itema]._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content p-3">
+                        <div class="modal-header">
+                            <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">Edit Experience</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row g-3 needs-validation"  action="Edit_About" method="post" >
+                                    <input  type="hidden" name="id" value="<%=About[itema]._id%>">
+                                    <!-- Name -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control l" aria-label="Name"aria-describedby="addon-wrapping"
+                                        name="hello_name" value=" <%= About[itema].hello_name %>" required>
+                                    </div>
+                                    </div>
+                                    <!--job -->
+                                    <div class="col-6"> 
+                                        <div class="input-group">
+                                            <input type="text"  class="form-control" name="job" aria-label="Summary" aria-describedby="addon-wrapping"
+                                            required value="<%= About[itema].job %>" />
+                                        </div>
+                                    </div>
 
-                  <!-- Job Title -->
-                  <div class="col-6">
-                  <div class="input-group">
-                    <input type="text"  class="form-control l" placeholder="Job Name" aria-describedby="addon-wrapping"
-                    required  name="job" value=""/>
-                  </div>
-                  </div>
+                                    <!-- bio  -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control l" name="bio"aria-label="lName" aria-describedby="addon-wrapping"
+                                        required value="<%= About[itema].bio %>"/>
+                                    </div>
+                                    </div>
 
-                  <!-- summary -->
-                  <div class="col-12">
-                  <div class="input-group">
-                    <input type="text"  class="form-control"  placeholder="summary"   aria-label="summary" aria-describedby="addon-wrapping"
-                    required name="summary" value="">  
-                  </div>
-                  </div>
+                                    <!-- img -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="img" value="<%= About[itema].img %>"/>
+                                    </div>
+                                    </div>
 
-                  <!-- img  -->
-                  <div class="col-12">
-                  <div class="input-group">
-                    <input type="file" class="form-control l"  placeholder="choose img File" aria-label="img"  aria-describedby="addon-wrapping"
-                    required name="img" value="" />
-                  </div>
-                  </div>
+                                    <!-- cv -->
+                                    <div class="col-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="cv" value="<%= About[itema].cv %>"/>
+                                    </div>
+                                    </div>
 
-                  <!-- CV  -->
-                  <div class="col-12">
-                  <div class="input-group">
-                    <input type="file" class="form-control l"  placeholder="choose Cv File" aria-label="cv"  aria-describedby="addon-wrapping"
-                    required name="cv" value="" />
-                  </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class=" col-12 btn bg-primary text-white">Save</button>
-                  </div> 
-            </form>
-          </div>
+                                    
+
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary d-block " type="submit">Save</button>
+                                    </div>
+                            </form>
+                        </div>
+                                
+                    </div>
+                </div>
+            </div>
+              
+              <%}%> 
+                <%  } else{ %>
+                            <h5 class="p-3 px-4"> There is no About ! </h5>
+                            <h5 class=" px-4"> Add Some Infos, I Know That U r an Expert Person ^^ </h5>
+                        <%}%> 
+            </div>
         </div>
-      </div>
-    </div>
-     
-
-    </div>
-
-
-</div>
-</section> 
-
-     
-
-    </div>
+    </section>
 
   </main>
 
-  
-
-
-
-    <!-- edit user info -->
-    <div
-          class="modal fade"
-          id="edit-info"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content p-3">
-        <div class="modal-header">
-          <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
-            Edit User Info
-          </h4>
-
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-
-        <div class="modal-body">
-          <form class="row g-3">
-            <div class="col-6"> 
-              <!-- first name -->
-              <div class="input-group">
-                  <input
-                  type="text"
-                  class="form-control"
-                  placeholder="First Name"
-                  aria-label="fName"
-                  aria-describedby="addon-wrapping"
-                  required
-                  value=""
-                  />
-              </div>
-              </div>
-
-              <!-- last name -->
-              <div class="col-6">
-              <div class="input-group">
-                  <input
-                  type="text"
-                  class="form-control l"
-                  placeholder="Last Name"
-                  aria-label="lName"
-                  aria-describedby="addon-wrapping"
-                  required
-                  value=""
-                  />
-              </div>
-              </div>
-
-              <!-- email -->
-              <div class="col-12">
-              <div class="input-group">
-                  <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Email"
-                  aria-label="email"
-                  aria-describedby="addon-wrapping"
-                  required
-                  value=""
-                  />
-              </div>
-              </div>
-
-              <!-- gender -->
-              <div class="col-6">
-              <div class="input-group">
-                  <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  required
-                  >
-                  <option selected disabled>Gender</option>
-                  <option  value="1">Female</option>
-                  <option value="2">Male</option>
-                  </select>
-              </div>
-              </div>
-
-              <!-- phone number -->
-              <div class="col-6">
-              <div class="input-group">
-                  <input
-                  type="text"
-                  class="form-contro"
-                  placeholder="Phone Number"
-                  aria-label="phone"
-                  aria-describedby="addon-wrapping"
-                  required
-                  value=""
-                  />
-              </div>
-              </div> 
-
-              <!-- Address  -->
-              <div class="col-6">
-              <div class="input-group">
-                    <input
-                  type="text"
-                  class="form-control l"
-                  placeholder="Address"
-                  aria-label="lName"
-                  aria-describedby="addon-wrapping"
-                  required
-                  value=""
-                  />
-              </div>
-              </div>
-
-              <!-- date -->
-              <div class="col-6">
-              <div class="input-group">
-                  <input
-                  type="date"
-                  class="form-control"
-                  value="2/22/2022"
-                  />
-              </div>
-              </div>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class=" col-12 btn bg-primary text-white">Save</button>
-        </div>
-      </div>
-      </div>
-    </div>
-
-    <!-- Add Experience -->
-    <div class="modal fade" id="add-exper"  tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content p-3">
-        <div class="modal-header">
-          <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
-            Edit Experience
-          </h4>
-
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-
-        <div class="modal-body">
-          <form class="row g-3">
-            <div class="col-6"> 
-              <!--  name -->
-              <div class="input-group">
-                  <input
-                  type="text"
-                  class="form-control"
-                  placeholder="experience title"
-                  aria-label="fName"
-                  aria-describedby="addon-wrapping"
-                  required
-                  value=""
-                  />
-              </div>
-              </div>
-
-              <!-- experience background -->
-              <div class="col-6">
-              <div class="input-group">
-                  <input
-                  type="text"
-                  class="form-control l"
-                  placeholder="experience background"
-                  aria-label="lName"
-                  aria-describedby="addon-wrapping"
-                  required
-                  value=""
-                  />
-              </div>
-              </div>
-
-        
-              <!-- Type edu or cusrs  -->
-              <div class="col-6">
-              <div class="input-group">
-                    <input
-                  type="text"
-                  class="form-control l"
-                  placeholder="Traning or Education"
-                  aria-label="lName"
-                  aria-describedby="addon-wrapping"
-                  required
-                  value=""
-                  />
-              </div>
-              </div>
-
-              <!-- date -->
-              <div class="col-6">
-              <div class="input-group">
-                  <input
-                  type="date"
-                  class="form-control"
-                  value="2/22/2022"
-                  />
-              </div>
-              </div>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class=" col-12 btn bg-primary text-white">Add</button>
-        </div>
-      </div>
-      </div>
-    </div>
-
-
      <script src="/js/bootstrap.bundle.min.js"></script>
-     <script src="/js/jquery.min.js"></script>
-     <script>
-        $(document).ready(function(){
-        $("#, #skil, #Edu, #expe, #serv, #wrk, #social").hide();
-        }); 
-        // hom
-       
-        // $(document).ready(function(){
-        // $("#perso, #skil, #Edu, #expe, #serv, #wrk, #social").hide();
-        // }); 
-        // // hom perso skil Edu expe serv wrk social
-
-        // $("#home").click(function(){
-        // $("#perso,#skil,#Edu,#expe,#serv,#wrk,#social").hide();
-        // $("#hom").show();
-        // });
-        // $("#personal").click(function(){
-        // $("#hom,#skil,#Edu,#expe,#serv,#wrk,#social").hide();
-        // $("#perso").show();
-        // });
-        // $("#skills").click(function(){
-        // $("#hom,#perso,#Edu,#expe,#serv,#wrk,#social").hide();
-        // $("#skil").show();
-        // });
-        // $("#Education").click(function(){
-        // $("#hom,#perso,#skil,#expe,#serv,#wrk,#social").hide();
-        // $("#Edu").show();
-        // });
-        // $("#experience").click(function(){
-        // $("#hom,#perso,#skil,#Edu,#serv,#wrk,#social").hide();
-        // $("#expe").show();
-        // });
-        
-        // $("#Service").click(function(){
-        // $("#hom,#perso,#skil,#Edu,#wrk,#expe,#social").hide();
-        // $("#serv").show();
-        // });
-        // $("#works").click(function(){
-        // $("#hom,#perso,#skil,#Edu,#serv,#expe,#social").hide();
-        // $("#wrk").show();
-        // });
-        // $("#Sociall").click(function(){
-        // $("#hom,#perso,#skil,#Edu,#serv,#expe,#wrk").hide();
-        // $("#social").show();
-        // });
-
-        // $("#Edit").click(function(){
-        // $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
-        // $("#Edpers").show();
-        // });
-
-        // $("#saveEd").click(function(){
-        // $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#Edpers").hide();
-        // $("#perso").show();
-        // });
-
-      
-
-    </script>
-
-
+  
 </body>
 </html>

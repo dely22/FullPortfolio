@@ -1,4 +1,6 @@
- <section class="about section" id="about">
+
+<!-- about sec start -->
+<section class="about section" id="about">
       <div class="container">
         <div class="row">
           <div class="section-title padd-15">
@@ -8,13 +10,12 @@
         <div class="row">
           <div class="about-content padd-15">
             <div class="row">
+               <% if(User.length){ %>
+                <% for(let itemu =0; itemu< User.length; itemu++){ %>
               <div class="about-text padd-15">
-                <h3>I'm hadeel jameel and I'm a <span>Web Developer</span></h3>
+                <h3>I'm <%= User[itemu].fullname %> and I'm a <span>Web Developer</span></h3>
                 <p>
-                  I have just over 2 years of web development experience, and
-                  software engineering. In my short experiment, I've already
-                  contributed to over eight projects as a front-end developer
-                  and programed two full-stuck-developing projects.
+                  <%= User[itemu].Summary %>
                 </p>
               </div>
             </div>
@@ -22,40 +23,38 @@
               <div class="personal-info padd-15">
                 <div class="row">
                   <div class="info-item padd-15">
-                    <p>Birthday : <span>27 sep 1998</span></p>
+                    <p>Birthday : <span> <%= User[itemu].birth %></span></p>
                   </div>
-                  <div class="info-item padd-15">
+                  <!-- <div class="info-item padd-15">
                     <p>Age : <span>23</span></p>
-                  </div>
+                  </div> -->
+                
                   <div class="info-item padd-15">
-                    <p>
-                      Email :
-                      <span
-                        ><a href="mailto:almktaryh@gmail.com"
-                          >almktaryh@gmail.com</a
-                        ></span
-                      >
+                    <p>Degree : <span><%= User[itemu].Degree %></span></p>
+                  </div>
+                 
+                  <div class="info-item padd-15">
+                    <p> Address: <span><%= User[itemu].Address %></span></p>
+                  </div>
+
+                  <div class="info-item padd-15">
+                    <p>Freelnace : <span> <%= User[itemu].freelance %></span></p>
+                  </div>
+
+               
+                 <div class="info-item padd-15">
+                    <p>Phone :
+                      <span><a href="tel:+967 <%= User[itemu].phone %>"> <%= User[itemu].phone %></a></span>
                     </p>
                   </div>
-                  <div class="info-item padd-15">
-                    <p>Degree : <span>B.S</span></p>
-                  </div>
-                  <div class="info-item padd-15">
-                    <p>
-                      Phone :
-                      <span
-                        ><a href="tel:+967738547437">+967 738 547 437</a></span
-                      >
+
+                   <div class="info-item padd-15">
+                    <p>Email :
+                      <span><a href="mailto:<%= User[itemu].email %>"> <%= User[itemu].email %></a></span >
                     </p>
-                  </div>
-                  <div class="info-item padd-15">
-                    <p>City : <span>Taiz</span></p>
-                  </div>
-                  <div class="info-item padd-15">
-                    <p>Freelnace : <span>Available</span></p>
-                  </div>
-                </div>
-                <div class="row">
+                  </div> 
+                   </div>
+                <!-- <div class="row">
                   <div class="buttons padd-15">
                     <a
                       href="#contact"
@@ -64,123 +63,97 @@
                       >Hire Me</a
                     >
                   </div>
-                </div>
+                </div> -->
+                <%}%> 
+                <%  } else{ %>
+                        <h5 class="p-3 px-4"> There is no User ! </h5>
+                        <h5 class=" px-4"> Add Some Infos, I Know That U r an Expert Person ^^ </h5>
+                    <%}%> 
               </div>
+              <!-- skills sec -->
               <div class="skills padd-15">
+                <% if(skills.length){ %>
+                <% for(let item =0; item< skills.length; item++){ %>
                 <div class="row">
                   <div class="skill-item padd-15">
-                    <h5>HTML</h5>
+                    <h5><%= skills[item].skill_name %></h5>
                     <div class="progress">
-                      <div class="progress-in" style="width: 96%"></div>
-                      <div class="skill-percent">96%</div>
-                    </div>
-                  </div>
-                  <div class="skill-item padd-15">
-                    <h5>css</h5>
-                    <div class="progress">
-                      <div class="progress-in" style="width: 85%"></div>
-                      <div class="skill-percent">85%</div>
-                    </div>
-                  </div>
-                  <div class="skill-item padd-15">
-                    <h5>JS</h5>
-                    <div class="progress">
-                      <div class="progress-in" style="width: 75%"></div>
-                      <div class="skill-percent">75%</div>
-                    </div>
-                  </div>
-                  <div class="skill-item padd-15">
-                    <h5>PHP</h5>
-                    <div class="progress">
-                      <div class="progress-in" style="width: 66%"></div>
-                      <div class="skill-percent">66%</div>
+                      <div class="progress-in" style="width:<%=skills[item].progress_percent %>%"></div>
+                      <div class="skill-percent"><%=skills[item].progress_percent %>%</div>
                     </div>
                   </div>
                 </div>
+                 <%}%> 
+                <%  } else{ %>
+                <h5 class="p-3 px-4"> There is no Skill added yet! </h5>
+                <%}%> 
               </div>
             </div>
+
+            <!-- education sec -->
             <div class="row">
-              <div class="education padd-15">
-                <h3 class="title">Education</h3>
+
+              <div class="education">
+               <h3 class="title padd-15">Education</h3>
                 <div class="row">
-                  <div class="timeline-box padd-15">
+                 <div class="timeline-box padd-15">
                     <div class="timeline shadow-dark">
-                      <!--   timeline item   -->
+                    <%if(Education.length){ %>
+                    <% for(let item3 =0; item3< Education.length; item3++){ %>
+                     <!--   timeline item   -->
                       <div class="timeline-item">
                         <div class="circle-dot"></div>
                         <h3 class="timeline-date">
-                          <i class="fa fa-calendar"></i> 2016 - 2021
+                          <i class="fa fa-calendar"></i><%= Education[item3].Education_period %>
                         </h3>
                         <h4 class="timeline-title">
-                          Engineering and Computer Science
+                          <%= Education[item3].Education_name %>
                         </h4>
                         <p class="timeline-text">
-                          Engineering and Computer Science. I studied
-                          Information Technology at the College of Engineering
-                          at Taiz University, and during this period I took many
-                          courses related to computer science, information
-                          technology and web programming, whether online or at
-                          the college.
+                     <%= Education[item3].Education_describe %>
                         </p>
                       </div>
-                      <!--   timeline item   -->
-                      <div class="timeline-item">
-                        <div class="circle-dot"></div>
-                        <h3 class="timeline-date">
-                          <i class="fa fa-calendar"></i> 2021 - 2022
-                        </h3>
-                        <h4 class="timeline-title">web programming</h4>
-                        <p class="timeline-text">
-                          web programming From late 2021 until now, I am doing a
-                          specialized study in the Road Academy webcamp to
-                          develop professional programming skills.
-                        </p>
-                      </div>
+                         <%}%> 
+                    <%  } else{ %>
+                        <h5 class="p-3 px-4"> There is no Education ! </h5>
+                        <h5 class=" px-4"> Add Some Educations, I Know That U r an Expert Person ^^ </h5>
+                    <%}%>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- experience sec -->
               <div class="experience padd-15">
                 <h3 class="title">Experience</h3>
                 <div class="row">
                   <div class="timeline-box padd-15">
                     <div class="timeline shadow-dark">
+                    <%if(Experinc.length){ %>
+                    <% for(let item3 =0; item3< Experinc.length; item3++){ %>
                       <!--   timeline item   -->
                       <div class="timeline-item">
                         <div class="circle-dot"></div>
                         <h3 class="timeline-date">
-                          <i class="fa fa-calendar"></i> 2015 - 2017
+                          <i class="fa fa-calendar"></i> <%= Experinc[item3].Experinc_period %>
                         </h3>
-                        <h4 class="timeline-title">digital marketing</h4>
+                        <h4 class="timeline-title"><%= Experinc[item3].Experinc_name %></h4>
                         <p class="timeline-text">
-                          I worked in marketing many products on social media,
-                          and although it was for a short period, I achieved
-                          great success.<br />
-                          Thats not true..!<br />
+                         <%= Experinc[item3].Experinc_describe %>
                         </p>
                       </div>
-                      <!--   timeline item   -->
-                      <div class="timeline-item">
-                        <div class="circle-dot"></div>
-                        <h3 class="timeline-date">
-                          <i class="fa fa-calendar"></i> 2018 - 2022
-                        </h3>
-                        <h4 class="timeline-title">Front-End Development</h4>
-                        <p class="timeline-text">
-                          I worked on developing and building front-ends for
-                          different sites on my own and with a group during my
-                          work as a freelancer.
-                          <br />
-                          <br />
-                          <br />
-                        </p>
-                      </div>
+                      <%}%> 
+                    <%  } else{ %>
+                      <h5 class="p-3 px-4"> There is no Experinc yet ! </h5>
+                    <%}%> 
                     </div>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
-    </section>
+</section>
+<!-- about sec End -->

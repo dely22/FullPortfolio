@@ -1,16 +1,8 @@
 // connect db
-const mongoose = require('mongoose');
-const DB = 'mongodb://127.0.0.1:27017/portoDash';
-mongoose
-  .connect(DB, {
-    autoIndex: true,
-  })
-  .then(() => {
-    console.log('DB connected :)');
-  });
+const db = require('./db');
 
 // Services schema
-const ServiceSchema = new mongoose.Schema({
+const ServiceSchema = new db.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
@@ -28,6 +20,6 @@ const ServiceSchema = new mongoose.Schema({
      default: 1
     },
 });
-const Service = mongoose.model('Service', ServiceSchema);
+const Service = db.model('Service', ServiceSchema);
 module.exports = Service;
 
